@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Ionic Angular on Appium"
 date:   2019-03-13 11:48:16 -0400
 categories: jekyll update
 ---
