@@ -18,7 +18,7 @@ title: marckassay.github.io
 author: Marc Kassay
 email: marckassay@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  - this is a publication of my tribulations and realizations
+  ~ a publication of my tribulations and realizations
 baseurl: "" # the subpath of your site, e.g. /blog
 url: " https://github.com/marckassay/marckassay.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  marckassay
