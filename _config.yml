@@ -23,12 +23,23 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://marckassay.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  marckassay
 linkedin_username: marckassay
+stackoverflow_username: marckassay
+stackoverflow_userid: "648789"
+# stackblitz_username: marckassay
 
 # Build settings
 markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
+
+others:
+  - entry:
+      title: regex101 - npm expression parser
+      url: "https://regex101.com/library/IwsYRm"
+#  - entry:
+#      title: regex101 - test expression
+#      url: "https://regex101.com/"
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

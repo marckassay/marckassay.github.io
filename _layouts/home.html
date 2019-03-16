@@ -19,7 +19,18 @@ layout: default
     </li>
     {%- endfor -%}
   </ul>
+  {%- endif -%}
 
+
+  {%- if site.others.size > 0 -%}
+  <h2 class="post-list-heading">{{ "others" }}</h2>
+  <ul class="post-list">
+    {%- for other in site.others -%}
+    <li>
+      <a href="{{ other.entry.url }}" target="_blank">{{ other.entry.title | escape }}</a>
+    </li>
+    {%- endfor -%}
+  </ul>
   {%- endif -%}
 
 </div>
