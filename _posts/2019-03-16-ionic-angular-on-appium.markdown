@@ -33,21 +33,17 @@ And before I start my narration about that diagram, I would like for you to read
 
     Provided is a set of interfaces to discover and manipulate DOM elements in web documents and to control the behavior of a user agent. It is primarily intended to allow web authors to write tests that automate a user agent from a separate controlling process, but may also be used in such a way as to allow in-browser scripts to control a — possibly separate — browser." - https://www.w3.org/TR/webdriver/
 
-  * Selenium-WebDriver (aka 'WebDriver' in the realm of Selenium) - "If you want to: create robust, browser-based regression automation suites and tests; scale and distribute scripts across many environments Then you want to use Selenium WebDriver; a collection of language specific bindings to drive a browser -- the way it is meant to be driven." - https://www.seleniumhq.org/
+  * "Selenium WebDriver" (aka 'WebDriver' or 'Selenium 2'. in the realm of Selenium. Not to be confused with 'selenium-webdriver' which is it's node.js implementation)[ref](https://www.seleniumhq.org/projects/webdriver/) - "If you want to: create robust, browser-based regression automation suites and tests; scale and distribute scripts across many environments Then you want to use Selenium WebDriver; a collection of language specific bindings to drive a browser -- the way it is meant to be driven." - https://www.seleniumhq.org/ - https://github.com/SeleniumHQ/selenium/
 
-  * WebDriverJS - "WebDriverJs is the Official javascript implementation of selenium. It uses the Selenium's Json-wire-protocol to interact with browser as selenium java does. It is written by selenium guys. Other tools like protractor depends on WebdriverJs to interact with browser. Webdriverjs is packaged as 'selenium-webdriver' under npm package which runs on nodejs." - http://www.webdriverjs.com
+  * selenium-webdriver (JS) (aka 'WebDriverJS'. nodejs module name: 'selenium-webdriver') - "WebDriverJs is the Official javascript implementation of selenium. It uses the Selenium's Json-wire-protocol to interact with browser as selenium java does. It is written by selenium guys. Other tools like protractor depends on WebdriverJs to interact with browser. Webdriverjs is packaged as 'selenium-webdriver' under npm package which runs on nodejs." - http://www.webdriverjs.com - https://github.com/SeleniumHQ/selenium/tree/master/javascript/node/selenium-webdriver - https://seleniumhq.github.io/selenium/docs/api/javascript/
 
-  * WebdriverIO - "WebdriverIO is a test automation framework that allows you to run tests based on the Webdriver protocol and Appium automation technology. It provides support for your favorite BDD/TDD test framework and will run your tests locally or in the cloud using Sauce Labs, BrowserStack or TestingBot." - https://github.com/webdriverio/webdriverio
+  * selenium-webdriver (Ruby) (its ruby gem name is: 'selenium-webdriver')- "WebDriver is a tool for writing automated tests of websites. It aims to mimic the behaviour of a real user, and as such interacts with the HTML of the application." - rubygems.org/gems/selenium-webdriver
+
+  * WebdriverIO - "WebdriverIO is a test automation framework that allows you to run tests based on the Webdriver protocol and Appium automation technology. It provides support for your favorite BDD/TDD test framework and will run your tests locally or in the cloud using Sauce Labs, BrowserStack or TestingBot." + "This binding is the most non-opinionated you will find as it just represents the WebDriver specification and doesn't come with any extra or higher level abstraction. It is lightweight and comes with support for the WebDriver specification and Appiums Mobile JSONWire Protocol." - https://github.com/webdriverio/webdriverio + https://github.com/webdriverio/webdriverio/tree/master/packages/webdriver
 
   * Chromedriver - "WebDriver is an open source tool for automated testing of webapps across many browsers. It provides capabilities for navigating to web pages, user input, JavaScript execution, and more. ChromeDriver is a standalone server which implements WebDriver's wire protocol for Chromium. We are in the process of implementing and moving to the W3C standard. ChromeDriver is available for Chrome on Android and Chrome on Desktop (Mac, Linux, Windows and ChromeOS)." - http://chromedriver.chromium.org/
 
   * Protractor - "Protractor is an end-to-end test framework for Angular and AngularJS applications. Protractor runs tests against your application running in a real browser, interacting with it as a user would.", "Protractor is built on top of WebDriverJS, which uses native events and browser-specific drivers to interact with your application as a user would" - https://www.protractortest.org
-
-  * Webview (Android) - "In most cases, we recommend using a standard web browser, like Chrome, to deliver content to the user. To learn more about web browsers, read the guide on invoking a browser with an intent.
-
-    WebView objects allow you to display web content as part of your activity layout, but lack some of the features of fully-developed browsers. A WebView is useful when you need increased control over the UI and advanced configuration options that will allow you to embed web pages in a specially-designed environment for your app." - <https://developer.android.com/reference/android/webkit/WebView>
-
-  * WKWebView (iOS) - "An object that displays interactive web content, such as for an in-app browser.", "Starting in iOS 8.0 and OS X 10.10, use WKWebView to add web content to your app. Do not use UIWebView or WebView." - <https://developer.apple.com/documentation/webkit/wkwebview>
 
   * Jasmine - "Jasmine is a behavior-driven development framework for testing JavaScript code. It does not depend on any other JavaScript frameworks. It does not require a DOM. And it has a clean, obvious syntax so that you can easily write tests." - https://jasmine.github.io/
 
@@ -85,6 +81,12 @@ And before I start my narration about that diagram, I would like for you to read
 
         JS Function
 
+  * Webview (Android) - "In most cases, we recommend using a standard web browser, like Chrome, to deliver content to the user. To learn more about web browsers, read the guide on invoking a browser with an intent.
+
+    WebView objects allow you to display web content as part of your activity layout, but lack some of the features of fully-developed browsers. A WebView is useful when you need increased control over the UI and advanced configuration options that will allow you to embed web pages in a specially-designed environment for your app." - <https://developer.android.com/reference/android/webkit/WebView>
+
+  * WKWebView (iOS) - "An object that displays interactive web content, such as for an in-app browser.", "Starting in iOS 8.0 and OS X 10.10, use WKWebView to add web content to your app. Do not use UIWebView or WebView." - <https://developer.apple.com/documentation/webkit/wkwebview>
+
   * Mobile Selectors
 
         UI Automator (Android, formally know as 'UIAutomator 2.0') - "The UI Automator testing framework provides a set of APIs to build UI tests that perform interactions on user apps and system apps. The UI Automator APIs allows you to perform operations such as opening the Settings menu or the app launcher in a test device. The UI Automator testing framework is well-suited for writing black box-style automated tests, where the test code does not rely on internal implementation details of the target app." - https://developer.android.com/training/testing/ui-automator
@@ -98,6 +100,83 @@ And before I start my narration about that diagram, I would like for you to read
   * Native apps - Hybrid apps - Mobile web apps  - CONTEXT
 
         [insert diagram (https://github.com/d3/d3-sankey) of 3 app types]
+
+### Other
+
+"...allows you to write code as if WebDriverJS had a synchronous, blocking API (like all of the other Selenium language bindings)." - https://github.com/SeleniumHQ/selenium/wiki/WebDriverJs
+
+"One common feature of mobile platforms is the ability to embed a chromeless webbrowser inside of a 'native' application. These are called 'webviews', and, if possible, a server for a given platform should implement support for automating the webview using the full, regular, WebDriver API." - https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#webviews-and-other-contexts
+
+"The need for automation of native and hybrid mobile applications can be met by the extension of the JSONWP" - https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#webviews-and-other-contexts + "Appium client libraries implement the Mobile JSON Wire Protocol" - http://appium.io/docs/en/about-appium/appium-clients/index.html
+
+"These libraries wrap standard Selenium client libraries to provide all the regular selenium commands dictated by the JSON Wire protocol, and add extra commands related to controlling mobile devices, such as multi-touch gestures and screen orientation. 
+
+    Appium client libraries implement the Mobile JSON Wire Protocol" - http://appium.io/docs/en/about-appium/appium-clients/index.html
+
+      AppiumLibCore	https://github.com/appium/ruby_lib
+      # https://github.com/appium/ruby_lib_core
+      Appium Python Client	https://github.com/appium/python-client
+      java-client	https://github.com/appium/java-client
+      WD.js https://github.com/admc/wd
+      WebdriverIO	https://github.com/webdriverio/webdriverio
+      web2driver https://github.com/projectxyzio/web2driver
+      Selenium.framework https://github.com/appium/selenium-objective-c
+      Appium PHP Client	https://github.com/appium/php-client
+      appium-dotnet-driver	https://github.com/appium/appium-dotnet-driver
+      RobotFramework	https://github.com/jollychang/robotframework-appiumlibrary
+
+"[Selenium] WebDriver is the name of the key interface against which tests should be written in Java, the implementing classes one should use are listed as below:
+
+    ChromeDriver, EventFiringWebDriver, FirefoxDriver, HtmlUnitDriver, InternetExplorerDriver, PhantomJSDriver, RemoteWebDriver, SafariDriver" - https://www.seleniumhq.org/projects/webdriver/
+
+"ChromeDriver is a standalone server which implements WebDriver's wire protocol for Chromium. 
+    We are in the process of implementing and moving to the W3C standard. ChromeDriver is available for Chrome on Android and Chrome on Desktop (Mac, Linux, Windows and ChromeOS).  
+
+    You can view the current implementation status of the WebDriver standard here." - http://chromedriver.chromium.org/
+
+"language bindings or clients"
+ Webdriverio -> Appium -> UIAutomater2
+
+Example of Selenium ChromeDriver ports of different languages:
+    https://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_Chrome_ChromeDriver.htm
+    https://seleniumhq.github.io/selenium/docs/api/rb/Selenium/WebDriver/Chrome/Driver.html
+    https://seleniumhq.github.io/selenium/docs/api/java/index.html
+    https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/chrome_exports_Driver.html
+    https://seleniumhq.github.io/selenium/docs/api/py/webdriver_chrome/selenium.webdriver.chrome.webdriver.html#module-selenium.webdriver.chrome.webdriver
+
+
+### Selenium Client & WebDriver Language Bindings
+
+"In order to create scripts that interact with the Selenium Server (Selenium RC, Selenium Remote WebDriver) or create local Selenium WebDriver scripts, you need to make use of language-specific client drivers. These languages include both 1.x and 2.x style clients.
+
+While language bindings for other languages exist, these are the core ones that are supported by the main project hosted on GitHub." [ref](https://www.seleniumhq.org/download/)
+
+  Java	3.141.59	2018-11-14	Download  	Change log  	Javadoc
+  C#	3.14.0	2018-08-02	Download	Change log	API docs
+  Ruby	3.14.0	2018-08-03	Download	Change log	API docs
+  Python	3.14.0	2018-08-02	Download	Change log	API docs
+  Javascript (Node)	4.0.0-alpha.1	2018-01-13	Download	Change log	API docs
+
+#### Third Party Language Bindings NOT DEVELOPED by seleniumhq
+    Perl download and docs by Gordon Child
+    Perl 6 by Ahmad M. Zawawi
+    PHP by Chibimagic (real name unknown?)
+    PHP by Lukasz Kolczynski
+    PHP by facebook
+    PHP by Adam Goucher
+    PHP by Nearsoft
+    Haskell by Adam Curtis
+    Objective-C by Dan Cuellar
+    Javascript by Adam Christian
+    Javascript by Jonathan Lipps
+    Javascript by Camilo Tapia, Vincent Voyer and Christian Bromann
+    JavaScript Leadfoot by SitePen
+    R by John Harrison
+    Dart by Marc Fisher
+    Tcl by Tobias Koch
+    Elixir by Nathan Johnson
+
+https://github.com/christian-bromann/awesome-selenium#drive
 
 ### Prerequisites
 

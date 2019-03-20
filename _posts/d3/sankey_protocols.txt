@@ -1,0 +1,17 @@
+AppiumLibCore,Appium
+Appium Python Client,Appium
+java-client,Appium
+WD.js,Appium
+WebdriverIO,Appium
+web2driver,Appium
+Selenium.framework,Appium
+Appium PHP Client,Appium
+appium-dotnet-driver,Appium
+RobotFramework,Appium
+
+Appium,UIAutomator2
+Appium,ChromeDriver
+
+ChromeDriver,Mobile JSON Wire Protocol
+Mobile JSON Wire Protocol,JSON Wire Protocol
+JSON Wire Protocol,WebDriver (the W3C specification)

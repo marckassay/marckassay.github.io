@@ -1,0 +1,63 @@
+Marc Kassay @marckassay 15:51
+For anyone who can answer this, "Is it correct to say WebdriverIO wraps a Selenium client library"?
+
+Adam Bjerstedt @abjerstedt 15:53
+@marckassay not at all
+
+Adam Bjerstedt @abjerstedt 15:53
+https://w3c.github.io/webdriver/
+This is a spec that defines the webdriver protocol
+selenium and webdriverio both communicate with drivers via this protocol or the slowly being replaced jsonwp protocol
+
+Marc Kassay @marckassay 15:59
+@abjerstedt, Thanks! Yeah, I noticed in my project's lock file there was no reference to selenium-webdriver (JS) which surprised me since I was assuming it had to because of Appium's doc, "These libraries wrap standard Selenium client libraries to provide all the regular selenium commands dictated by the JSON Wire protocol..." - http://appium.io/docs/en/about-appium/appium-clients/index.html
+
+Adam Bjerstedt @abjerstedt 15:59
+appium does
+but appium behaves like a driver
+it exposes endpoints that wdio interactions with
+
+Adam Bjerstedt @abjerstedt 16:00
+so Webdriverio -> Appium -> UIAutomater2
+
+Marc Kassay @marckassay 16:00
+Oh! Isn't WebdriverIO an Appium client?
+
+Adam Bjerstedt @abjerstedt 16:01
+no
+We are a library that lets you interact with appium, or browser drivers
+
+Marc Kassay @marckassay 16:05
+@abjerstedt thanks again! But what is the difference between a library and client in this context?
+
+Adam Bjerstedt @abjerstedt 16:05
+you could interact directly with appium if you wanted
+by a series of web requests
+
+Marc Kassay @marckassay 16:10
+Ok. We you mentioned, 'browser drivers' are you referring to, for instance, ChromeDriver (http://chromedriver.chromium.org/) and not any libraries for it?
+
+Adam Bjerstedt @abjerstedt 16:11
+chromedriver is a binary
+
+Adam Bjerstedt @abjerstedt 16:11
+it automates the driver via exposing endpoints
+and depending on what web requests are send to that endpoint
+chromedriver then interacts with chrome
+(same with the other browsers)
+
+Marc Kassay @marckassay 16:16
+Ok. Would it be correct to say, "UIAutomater2 automates native requests where as ChromeDriver automates webview requests"?
+
+Marc Kassay @marckassay 16:18
+Errr...that last question of mine....let me retract it.
+
+Marc Kassay @marckassay 16:25
+@abjerstedt so this article isn't completely accurate? - http://appium.io/docs/en/about-appium/appium-clients/index.html
+
+Adam Bjerstedt @abjerstedt 16:26
+no its not
+because we don't wrapper selenium
+
+Marc Kassay @marckassay 16:27
+@abjerstedt ok. Thanks.

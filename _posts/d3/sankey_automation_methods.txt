@@ -1,0 +1,19 @@
+UIAutomation,Hybrid(iOS)
+UIAutomation,Native(iOS)
+WKWebView,Hybrid(iOS)
+WKWebView,Mobile web(iOS)
+XCTest,Hybrid(iOS)
+XCTest,Native(iOS)
+Hybrid(iOS),iOS
+Mobile web(iOS),iOS
+Native(iOS),iOS
+
+UI Automator,Hybrid(Android),1,orange
+UI Automator,Native(Android)
+Webview,Hybrid(Android),1,orange
+Webview,Mobile web(Android)
+UIAutomator 2.0,Hybrid(Android)
+UIAutomator 2.0,Native(Android)
+Hybrid(Android),Android,1,orange
+Mobile web(Android),Android
+Native(Android),Android

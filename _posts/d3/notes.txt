@@ -1,0 +1,33 @@
+selenium-webdriver - The official WebDriver JavaScript bindings from the Selenium project.
+WD - WebDriver/Selenium 2 node.js client.
+WebdriverIO - better implementation of WebDriver bindings with predefined 50+ actions.
+CasperJS - open source navigation scripting & testing utility.
+Zombie.js - Insanely fast, headless full-stack testing.
+DalekJS - Automated cross browser testing.
+SlimerJS - A scriptable browser for Web developers.
+Nightwatch - efficient and straightforward Javascript End-to-End tests.
+yiewd - WD.js wrapper using latest Harmony generators! Get rid of the callback pyramid with yield.
+Karma - Brings a productive testing environment to developers for unit testing (mostly AngularJS).
+Protractor - Protractor is an end-to-end test framework for AngularJS applications.
+Cypress - Cypress helps developers write automated tests for the web.
+CodeceptJS - Modern Era Aceptance Testing Framework for NodeJS.
+Nightmare.js - A high-level browser automation library.
+
+
+https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#webviews-and-other-contexts
+
+
+Selenium-C#
+Selenium-JS
+Selenium-Java
+Selenium-Python
+Selenium-Ruby
+
+																									
+Selenium-ChromeDriver	Selenium-WebDriver																								
+Selenium-SafariDriver	Selenium-WebDriver																								
+Selenium-InternetExplorerDriver	Selenium-WebDriver																								
+Selenium-RemoteWebDriver	Selenium-WebDriver																								
+Selenium-HtmlUnitDriver	Selenium-WebDriver																								
+Selenium-FirefoxDriver	Selenium-WebDriver																								
+Selenium-EventFiringWebDriver	Selenium-WebDriver
