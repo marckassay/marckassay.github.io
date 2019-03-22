@@ -1,3 +1,9 @@
+The following conceptual diagram will hopefully illustrate the landscape accurately that you might have to immerge yourself in shortly:
+
+    [insert diagram (https://github.com/d3/d3-sankey) of native selectors and "webdriver" selectors]
+    [insert diagram https://observablehq.com/@mbostock/tree-of-life) of native selectors and "webdriver" selectors]
+    [insert diagram https://observablehq.com/@d3/radial-dendrogram  ) of native selectors and "webdriver" selectors]
+
 selenium-webdriver - The official WebDriver JavaScript bindings from the Selenium project.
 WD - WebDriver/Selenium 2 node.js client.
 WebdriverIO - better implementation of WebDriver bindings with predefined 50+ actions.

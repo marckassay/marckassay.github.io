@@ -1,23 +1,19 @@
 ---
 layout: post
-title:  "Ionic 4 Angular with Appium"
+title:  "Ionic 4 Angular with Appium (still in draft)"
 date:   2019-03-21 11:48:16 -0400
 categories: test automation 
 ---
 
-If you're familiar with test automation using Appium, the title of this article entails considerable amount of thought and knowledge on how an application is going to be tested successfully. Prior to typing this article, my tribulations of completing a successful test "spec" was such that I felt an article, hopefully this one, will remove some uncertainities for the next soul facing the same objectives.
+If you're familiar with test automation using Appium, the title of this article requires considerable amount of thought and knowledge on how a hybrid application is going to be successfully tested. Prior to typing this article, my tribulations of completing a successful test "spec" was such that I felt an article, hopefully this one, will remove some uncertainities for the next soul facing the same objectives.
 
-This was my second experience with this sort of test automation, that both required tremendous amount of research and trial-and-errors. From the documentation that I read online seem to freqeuntly conflict with what I experinced when implemented in my IDE. Having implmentation frameworks being referred to the same name as the specfication only added to the confusion when trying to construct, mentally, this test automation landscape. This landscape is vast with several layers of abstraction between frameworks. That said, and until perhaps a software analyst that specizlies in this realm explains in detail, my objective for this article is to simplely guide you to pass just a couple of test specs. Those test specs invovle, swipe gestures and assert that exepectd data is indeed shown. So let me explain (by clarifying), to the best of my knowledge, the landscape of siginificant frameworks, and protocals and strategies that will be used in this setup of "Ionic 4 Angular with Appium".
+This was my second experience with this sort of test automation, that both required tremendous amount of trial-and-errors. From the documentation that I read online seem to freqeuntly conflict with what I experinced when implemented in my IDE. Having implmentation frameworks with the same name as the specfication only added to the confusion when trying to visuaize a hierchy of consitutents. This test automation landscape is vast with several layers of abstraction between frameworks. That said, and until perhaps a software analyst that specizlies in this realm explains in detail, my objective for this article is to simplely guide you to pass just a couple of test specs. Those test specs invovle, swipe gestures and assert that exepectd data is indeed shown. So let me explain (by clarifying), to the best of my knowledge, the landscape of siginificant frameworks, and protocals and strategies that will be used in this setup of "Ionic 4 Angular with Appium".
 
 ## Prelude
 
-The following conceptual diagram will hopefully illustrate the landscape accurately that you might have to immerge yourself in shortly:
+If your not familiar with the consitutents in test automation, such as the ones in this post listed below, you will only have a limited understanding. But if you want to prove to yourself that you can complete a successful test, then skip to the tutortial ('Develop The Application To Be Under Test') section. Afterwards recollect your thoughts and consider to briefly read this section.
 
-    [insert diagram (https://github.com/d3/d3-sankey) of native selectors and "webdriver" selectors]
-    [insert diagram https://observablehq.com/@mbostock/tree-of-life) of native selectors and "webdriver" selectors]
-    [insert diagram https://observablehq.com/@d3/radial-dendrogram  ) of native selectors and "webdriver" selectors]
-
-Before we start with the tutorial section, read the brief descriptions below about framweworks and protocols that releated to this article:
+So here is a list of some consistutents in this concotion that we will soon embark on:
 
 * Ionic
 
@@ -180,9 +176,11 @@ Before we start with the tutorial section, read the brief descriptions below abo
 
 ## Prerequisites
 
-As I mentioned the title entails considerable amount of knowledge, a more specific (ridiculous) variation can very well be "Android Application Developed in Ionic 4 with Angular, Intergrated with Cordova and Automated by Appium - driven by WebdriverIO". Although specific and long, for those who will be using anything else, I'm sure you can gather some knowledge in what is typed below to fit some of your needs. Also I will be using TypeScript, so make considerations if using JavaScript.
+As I mentioned in the begining about the title, requires a considerable amount of thought. A more expanded (ridiculous) variation of this title can very well be, "Android Application Developed in Ionic 4 with Angular, Intergrated with Cordova and Automated by Appium - driven by WebdriverIO". Although specific, for those who will be using anything else, I'm sure you can gather some knowledge in what is typed below to fit some of your needs. Also I will be using TypeScript, so make considerations if using JavaScript.
 
-If its in your interest, the following versions I'll be using are:
+For those of you who are familiar with test automation as such, I'm going to be using syncrounous mode versus asyncronoucs, as I find it ealiser to code and read.
+
+If its in your interest, the following versions are installed on my Windows 10 machine:
 
 ```shell
 >> node -v
@@ -190,57 +188,51 @@ If its in your interest, the following versions I'll be using are:
 >> npm -v
 >> ionic -v
 >> cordova -v
+>> pwsh -v
 v11.0.0
 1.1.7
 6.9.0
 4.10.3
 8.1.2 (cordova-lib@8.1.1)
+PowerShell 6.1.0
 ```
+
+And I used Android SDK version 27, created with cordova-android@7.1.4.
 
 ### Install Appium
 
-You may, install appium as a global node dependency, but I prefer the desktop app so that you can interact with the AUT when needed for standalone tests.
-
-To install the desktop, [download the installer](https://github.com/appium/appium-desktop/releases/tag/v1.11.0) for your platform and execute it. This installer, launches Appium server, which will install the 'Appium Settings' app when putitng our 'myApp' under-test for the first time. More on that in steps 12-16
+You may, install Appium as a global node dependency, but I prefer using desktop application so that you can interact with the AUT when needed for standalone tests. So to install the desktop application, [download the installer](https://github.com/appium/appium-desktop/releases/tag/v1.11.0) for your platform and execute it. This installer, launches Appium server, which will install the 'Appium Settings' mobile app when putting our 'myApp' under-test for the first time. More on that in steps 13-17
 
 ## Develop The Application To Be Under Test
 
-You have the opition to clone or fork the [repository](https://github.com/marckassay/Ionic4AngularWithAppium) for this application here.
+You have the option to clone or fork the [repository](https://github.com/marckassay/Ionic4AngularWithAppium) of the Ionic application that we will use in this tutorial. For those who choose to step thru development of this app, continue to step 1.
 
-You will need to create an Ionic 4 application with Angular. Execute your choice of Nodejs package manager install command (for the sake of simplicity I will be using `npm` commands for this article) if not already installed for `ionic` and `cordova` modules:
-
-1. If you haven't installed ionic or cordova globally:
+1. Execute your choice of Nodejs package manager's install command for `ionic` and `cordova` modules, if not already installed. For the sake of simplicity I will be using `npm` commands for this article. You may choose to use any other node package manager, however with `cordova-fetch` it unconditionally uses `npm` which will conflict with `yarn` if used. For more information read about [spypkg](https://github.com/marckassay/spypkg)'s objective:
 
     ```shell
-    npm install ionic cordova -g
+    $ > npm install ionic cordova -g
     ```
 
-2. By default angular is installed. You may opt-out of appflow intergration when prompt at the end of install:
+2. By default, `ionic start` will add Angular dependencies and you may opt-out of appflow intergration when prompt at the end of install. So execute the following to have ionic generate our app named 'myApp':
 
     ```shell
-    ionic start myApp sidemenu
+    $ > ionic start myApp sidemenu
     ```
 
-3. Hopefully you should be able to at least build and have it served locally:
+3. Change your CLI directory to 'myApp' and you should be able to at least build and have it served locally by the executing what is below. For those who immdeiately recieve an error, see the message below this block of code:
 
     ```shell
-    ionic serve
-    ```
-
-4. Generate a left and right sidemenu:
-
-    ```shell
-    ionic generate page leftmenu
-    ionic generate page rightmenu
+    $ > cd myApp/
+    $ /myApp> ionic serve
     ```
 
     *If you receieve the following error message:*
 
     ```shell
-    > ng generate page leftmenu
+    > ng serve
     'sh' is not recognized as an internal or external command,
     operable program or batch file.
-    [ERROR] Could not generate page.
+    [ERROR] ng has unexpectedly closed (exit code 1).
     ```
 
     *A workaround is to change the name of ```ng``` file:*
@@ -249,10 +241,16 @@ You will need to create an Ionic 4 application with Angular. Execute your choice
     E:\myApp> Rename-Item .\node_modules\.bin\ng -NewName ng.tmp
     ```
 
+    *Or simplely delete that file. This [issue](https://github.com/ionic-team/ionic-cli/issues/3852) is currently open in ionic-cli project.
 
-    *Or simplely remove it. This [issue](https://github.com/yarnpkg/yarn/issues/6902) was reported from previous yarn installs on Windows, which is resolved in yarn 1.15.2. This also seems to occur with npm. If this does happen, make a mental note in case if your package manager overwrites this workaround.*
+4. Generate a left and right sidemenu. This app will have a left and right sidemenu containing a list of items. I'm going to use some parts of the generated code from step 2 to quickly have us test the app.
 
-5. Now modify ```AppModule``` so that its files are to the following:
+    ```shell
+    $ /myApp> ionic generate page leftmenu
+    $ /myApp> ionic generate page rightmenu
+    ```
+
+5. Now modify the following file in ```src/app/```:
 
     ```src\app\app.component.html```
 
@@ -353,7 +351,7 @@ You will need to create an Ionic 4 application with Angular. Execute your choice
     export class AppModule { }
     ```
 
-6. Now for ```LeftmenuPage``` and ```RightmenuPage```, modify the their ```@NgModule``` tag that is located in their module file so that they are exportable:
+6. Now for ```LeftmenuPage``` and ```RightmenuPage```, modify their ```@NgModule``` tag that is located in their module file so that they can be imported:
 
     ```src\app\leftmenu\leftmenu.module.ts```
 
@@ -385,10 +383,10 @@ You will need to create an Ionic 4 application with Angular. Execute your choice
     })
     ```
 
-    Replace all content between the curly braces of `LeftmenuPage` and `RightmenuPage` class with TypeScript below.
+    And replace all content between the curly braces of `LeftmenuPage` and `RightmenuPage` class with the following TypeScript code below.
 
     ```src\app\leftmenu\leftmenu.page.ts``` and ```src\app\rightmenu\rightmenu.page.ts```
-    
+
     ```typescript
     private selectedItem: any;
     private icons = [
@@ -409,7 +407,7 @@ You will need to create an Ionic 4 application with Angular. Execute your choice
         this.items.push({
           title: 'Item ' + i,
           note: 'This is item #' + i,
-          icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+          icon: this.icons[ i - 1 ]
         });
       }
     }
@@ -420,7 +418,7 @@ You will need to create an Ionic 4 application with Angular. Execute your choice
 
 7. In an addition for ```LeftmenuPage``` and ```RightmenuPage``` modules, modify their html and scss file:
 
-    Replace the these html files `ion-content` with the following html
+    Replace the `ion-content` tag with the following for:
     ```src\app\leftmenu\leftmenu.page.html``` and ```src\app\rightmenu\rightmenu.page.html```
 
     ```html
@@ -437,8 +435,7 @@ You will need to create an Ionic 4 application with Angular. Execute your choice
     </ion-content>
     ```
 
-    Add the following scss files these files:
-    ```src\app\leftmenu\leftmenu.page.html``` and ```src\app\rightmenu\rightmenu.page.html```
+    Add the following scss code to files these files:
 
     ```src\app\leftmenu\leftmenu.page.scss``` and ```src\app\rightmenu\rightmenu.page.scss```
 
@@ -448,39 +445,37 @@ You will need to create an Ionic 4 application with Angular. Execute your choice
     }
     ```
 
-8. Add WebdriverIO dependencies
+8. Now that we are done with development. We need to add WebdriverIO dependencies. Execute the following to do just that.
 
     ```shell
-    npm install webdriverio @wdio/cli @wdio/jasmine-framework @wdio/local-runner @wdio/spec-reporter @wdio/sync -D
+    $ /myApp> npm install webdriverio @wdio/cli @wdio/jasmine-framework @wdio/local-runner @wdio/spec-reporter @wdio/sync -D
     ```
 
     If npm WARN ajv-keywords@3.4.0 requires a peer of ajv@^6.9.1 but none is installed. You must install peer dependencies yourself.
 
     ```shell
-    npm install ajv -D
+    $ /myApp> npm install ajv -D
     ```
 
-9. Restructure e2e folder
-
-    To seperate Angular's karma e2e tests and our WDIO test, move all current contents of ```e2e``` folder into a new folder named ```karma```. Create another folder in ```e2e``` named ```appium```. So the e2e folder is arranged as what illustrated:
+9. Next is to create are tests. First restructure the e2e folder where Angular currently has it's karam tests. To seperate Angular's karma e2e tests and our WDIO test, move all current contents of ```e2e``` folder into a new folder named ```karma```. Create another folder in ```e2e``` named ```appium```. So the e2e folder is arranged as illustrated:
 
     ![New e2e Structure](2019-03-21/New_e2e_Structure.png)
 
-10. Add Appium and WDIO files
+10. Now we can add Appium and WDIO files by simply [download the archive file](https://github.com/marckassay/Ionic4AngularWithAppium/e2e/appium/src/helpers) that is the TypeScript port of [Wim Selles](https://github.com/wswebcreation)' JavaScript files from his [appium-boilerplate](https://github.com/webdriverio/appium-boilerplate) project.
 
-    To add the Appium and WDIO files, simplely [download the archive file](https://github.com/marckassay/Ionic4AngularWithAppium/e2e/appium/src/helpers) that is the TypeScript port of [Wim Selles](https://github.com/wswebcreation)' JavaScript files from his [appium-boilerplate](https://github.com/webdriverio/appium-boilerplate) project.
+    Once downloaded, extract contents to the `e2e/appium/` folder that you created in step 9. So the e2e/appium folder is arranged as illustrated:
 
-    Once downloaded, extract contents to the `e2e/appium/` folder that you created in step 9.
+    ![New e2e/appium Structure with content](2019-03-21/New_e2e_Structure_With_Content.png)
 
-    ![New e2e Structure](2019-03-21/New_e2e_Structure_With_Content.png)
+11. Add Appium dependencies
 
-x11. Add Appium dependencies
+    In this step the correct version of chromedriver will be installed.
 
     ```shell
-    npm install appium-doctor appium-uiautomator2-driver -D
+    $ /myApp> npm install appium-doctor appium-uiautomator2-driver -D
     ```
 
-12. Edit package.json file to include new script command:
+12. Finally, edit `package.json` file to include `wdio:test` script command:
 
     ```json
     {
@@ -500,21 +495,23 @@ x11. Add Appium dependencies
       ...
     ```
 
+    Now this application's source and e2e code is completed, we can move on to the 'Intergate Cordova with the Application for Deployment' section.
+
 ### Intergate Cordova with the Application for Deployment
 
 13. This will intergate and build the application:
 
     ```shell
-    ionic cordova build android --debug
+    $ /myApp> ionic cordova build android
     ```
 
 14. To deploy (and install) on a physical device, execute the following:
 
     ```shell
-    adb install .\platforms\android\app\build\outputs\apk\debug\app-debug.apk
+    $ /myApp> adb install .\platforms\android\app\build\outputs\apk\debug\app-debug.apk
     ```
 
-### Start Appium Server
+### Start Appium Desktop
 
 15. Run Appium as admin.
 
@@ -526,14 +523,23 @@ x11. Add Appium dependencies
 
   ![Appium Running](2019-03-21/Appium_Running.png)
 
+  More information on Appium Desktop can be found [here](https://github.com/appium/appium-desktop).
+
 ### Execute WebdriverIO
 
-17. Finally, we are ready to run our test suite. Execute this.
+17. Finally, we are ready to run our test suite. Execute the `wdio:test` script command:
 
   ```shell
-  npm run wdio:test
+  $ /myApp> npm run wdio:test
   ```
+
+  Appium Settings app should of auto-installed and continue to run in the background.
+
+  ![Post WDIO test](2019-03-21/Android_With_Appium_App.png)
 
   Hopefully after WDIO and Appium are finished, your CLI and Appium console should be similar to what is illustrated below:
 
   ![Post WDIO test](2019-03-21/Post_WDIO_test.png)
+
+## Conclusion
+
