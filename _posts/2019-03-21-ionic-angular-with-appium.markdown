@@ -465,7 +465,7 @@ You have the option to clone or fork the [repository](https://github.com/marckas
 
     Once downloaded, extract contents to the `e2e/appium/` folder that you created in step 9. So the e2e/appium folder is arranged as illustrated:
 
-    ![New e2e/appium Structure with content](2019-03-21/New_e2e_Structure_With_Content.png)
+    ![New e2e/appium Structure with Content](2019-03-21/New_e2e_Structure_With_Content.png)
 
 11. Add Appium dependencies
 
@@ -535,11 +535,11 @@ You have the option to clone or fork the [repository](https://github.com/marckas
 
   Appium Settings app should of auto-installed and continue to run in the background.
 
-  ![Post WDIO test](2019-03-21/Android_With_Appium_App.png)
+  ![Android with Appium Settings app](2019-03-21/Android_With_Appium_App.png)
 
   Hopefully after WDIO and Appium are finished, your CLI and Appium console should be similar to what is illustrated below:
 
-  ![Post WDIO test](2019-03-21/Post_WDIO_test.png)
+  ![Post WDIO Test](2019-03-21/Post_WDIO_Test.png)
 
 ## Conclusion
 
