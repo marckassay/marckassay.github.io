@@ -1,0 +1,120 @@
+selenium-webdriver - The official WebDriver JavaScript bindings from the Selenium project.
+WD - WebDriver/Selenium 2 node.js client.
+WebdriverIO - better implementation of WebDriver bindings with predefined 50+ actions.
+CasperJS - open source navigation scripting & testing utility.
+Zombie.js - Insanely fast, headless full-stack testing.
+DalekJS - Automated cross browser testing.
+SlimerJS - A scriptable browser for Web developers.
+Nightwatch - efficient and straightforward Javascript End-to-End tests.
+yiewd - WD.js wrapper using latest Harmony generators! Get rid of the callback pyramid with yield.
+Karma - Brings a productive testing environment to developers for unit testing (mostly AngularJS).
+Protractor - Protractor is an end-to-end test framework for AngularJS applications.
+Cypress - Cypress helps developers write automated tests for the web.
+CodeceptJS - Modern Era Aceptance Testing Framework for NodeJS.
+Nightmare.js - A high-level browser automation library.
+
+
+https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#webviews-and-other-contexts
+
+
+Selenium-C#
+Selenium-JS
+Selenium-Java
+Selenium-Python
+Selenium-Ruby
+
+																									
+Selenium-ChromeDriver	Selenium-WebDriver																								
+Selenium-SafariDriver	Selenium-WebDriver																								
+Selenium-InternetExplorerDriver	Selenium-WebDriver																								
+Selenium-RemoteWebDriver	Selenium-WebDriver																								
+Selenium-HtmlUnitDriver	Selenium-WebDriver																								
+Selenium-FirefoxDriver	Selenium-WebDriver																								
+Selenium-EventFiringWebDriver	Selenium-WebDriver
+
+  * AngularJS (going extinct) - "... is a JavaScript-based open-source front-end web framework mainly maintained by Google and by a community of individuals and corporations to address many of the challenges encountered in developing single-page applications." - https://en.wikipedia.org/wiki/AngularJS
+
+  * selenium-webdriver (Ruby) (its ruby gem name is: 'selenium-webdriver')- "WebDriver is a tool for writing automated tests of websites. It aims to mimic the behaviour of a real user, and as such interacts with the HTML of the application." - rubygems.org/gems/selenium-webdriver
+
+  * Mocha - "Mocha is a feature-rich JavaScript test framework running on Node.js and in the browser, making asynchronous testing simple and fun. Mocha tests run serially, allowing for flexible and accurate reporting, while mapping uncaught exceptions to the correct test cases." - https://mochajs.org/
+
+  * Chai - "Chai is a BDD / TDD assertion library for node and the browser that can be delightfully paired with any javascript testing framework." - https://www.chaijs.com/
+
+  * Cuccumber - https://cucumber.io/
+
+
+### Other
+
+"...allows you to write code as if WebDriverJS had a synchronous, blocking API (like all of the other Selenium language bindings)." - https://github.com/SeleniumHQ/selenium/wiki/WebDriverJs
+
+"One common feature of mobile platforms is the ability to embed a chromeless webbrowser inside of a 'native' application. These are called 'webviews', and, if possible, a server for a given platform should implement support for automating the webview using the full, regular, WebDriver API." - https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#webviews-and-other-contexts
+
+"The need for automation of native and hybrid mobile applications can be met by the extension of the JSONWP" - https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#webviews-and-other-contexts + "Appium client libraries implement the Mobile JSON Wire Protocol" - http://appium.io/docs/en/about-appium/appium-clients/index.html
+
+"These libraries wrap standard Selenium client libraries to provide all the regular selenium commands dictated by the JSON Wire protocol, and add extra commands related to controlling mobile devices, such as multi-touch gestures and screen orientation. 
+
+    Appium client libraries implement the Mobile JSON Wire Protocol" - http://appium.io/docs/en/about-appium/appium-clients/index.html
+
+      AppiumLibCore	https://github.com/appium/ruby_lib
+      # https://github.com/appium/ruby_lib_core
+      Appium Python Client	https://github.com/appium/python-client
+      java-client	https://github.com/appium/java-client
+      WD.js https://github.com/admc/wd
+      WebdriverIO	https://github.com/webdriverio/webdriverio
+      web2driver https://github.com/projectxyzio/web2driver
+      Selenium.framework https://github.com/appium/selenium-objective-c
+      Appium PHP Client	https://github.com/appium/php-client
+      appium-dotnet-driver	https://github.com/appium/appium-dotnet-driver
+      RobotFramework	https://github.com/jollychang/robotframework-appiumlibrary
+
+"[Selenium] WebDriver is the name of the key interface against which tests should be written in Java, the implementing classes one should use are listed as below:
+
+    ChromeDriver, EventFiringWebDriver, FirefoxDriver, HtmlUnitDriver, InternetExplorerDriver, PhantomJSDriver, RemoteWebDriver, SafariDriver" - https://www.seleniumhq.org/projects/webdriver/
+
+"ChromeDriver is a standalone server which implements WebDriver's wire protocol for Chromium. 
+    We are in the process of implementing and moving to the W3C standard. ChromeDriver is available for Chrome on Android and Chrome on Desktop (Mac, Linux, Windows and ChromeOS).  
+
+    You can view the current implementation status of the WebDriver standard here." - http://chromedriver.chromium.org/
+
+"language bindings or clients"
+ Webdriverio -> Appium -> UIAutomater2
+
+Example of Selenium ChromeDriver ports of different languages:
+    https://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_Chrome_ChromeDriver.htm
+    https://seleniumhq.github.io/selenium/docs/api/rb/Selenium/WebDriver/Chrome/Driver.html
+    https://seleniumhq.github.io/selenium/docs/api/java/index.html
+    https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/chrome_exports_Driver.html
+    https://seleniumhq.github.io/selenium/docs/api/py/webdriver_chrome/selenium.webdriver.chrome.webdriver.html#module-selenium.webdriver.chrome.webdriver
+
+    ### Selenium Client & WebDriver Language Bindings
+
+"In order to create scripts that interact with the Selenium Server (Selenium RC, Selenium Remote WebDriver) or create local Selenium WebDriver scripts, you need to make use of language-specific client drivers. These languages include both 1.x and 2.x style clients.
+
+While language bindings for other languages exist, these are the core ones that are supported by the main project hosted on GitHub." [ref](https://www.seleniumhq.org/download/)
+
+  Java	3.141.59	2018-11-14	Download  	Change log  	Javadoc
+  C#	3.14.0	2018-08-02	Download	Change log	API docs
+  Ruby	3.14.0	2018-08-03	Download	Change log	API docs
+  Python	3.14.0	2018-08-02	Download	Change log	API docs
+  Javascript (Node)	4.0.0-alpha.1	2018-01-13	Download	Change log	API docs
+
+#### Third Party Language Bindings NOT DEVELOPED by seleniumhq
+    Perl download and docs by Gordon Child
+    Perl 6 by Ahmad M. Zawawi
+    PHP by Chibimagic (real name unknown?)
+    PHP by Lukasz Kolczynski
+    PHP by facebook
+    PHP by Adam Goucher
+    PHP by Nearsoft
+    Haskell by Adam Curtis
+    Objective-C by Dan Cuellar
+    Javascript by Adam Christian
+    Javascript by Jonathan Lipps
+    Javascript by Camilo Tapia, Vincent Voyer and Christian Bromann
+    JavaScript Leadfoot by SitePen
+    R by John Harrison
+    Dart by Marc Fisher
+    Tcl by Tobias Koch
+    Elixir by Nathan Johnson
+
+https://github.com/christian-bromann/awesome-selenium#drive
