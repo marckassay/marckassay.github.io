@@ -176,9 +176,9 @@ So here is a list of some consistutents in this concotion that we will soon emba
 
 ## Prerequisites
 
-As I mentioned in the begining about the title, requires a considerable amount of thought. A more expanded (ridiculous) variation of this title can very well be, "Android Application Developed in Ionic 4 with Angular, Intergrated with Cordova and Automated by Appium - driven by WebdriverIO". Although specific, for those who will be using anything else, I'm sure you can gather some knowledge in what is typed below to fit some of your needs. Also I will be using TypeScript, so make considerations if using JavaScript.
+As I mentioned in the begining about the title, requires a considerable amount of thought. A more expanded (ridiculous) variation of this title can very well be, "Android Application Developed in Ionic 4 with Angular, Intergrated with Cordova and Automated by Appium - driven by WebdriverIO". Although specific, for those who will be using anything else, I'm sure you can gather some knowledge in what is typed below to fit some of your needs.
 
-For those of you who are familiar with test automation as such, I'm going to be using syncrounous mode versus asyncronoucs, as I find it ealiser to code and read.
+I will be using TypeScript, so make considerations if using JavaScript. For those of you who are familiar with test automation as such, I'm going to be using syncrounous mode versus asyncronoucs, as I find it ealiser to code and read. Sorry for not including code for iOS as I don't have an  Apple to do a build from. For those who care about iOS, take a look at [Wim Selles](https://github.com/wswebcreation)' [appium-boilerplate](https://github.com/webdriverio/appium-boilerplate) project.
 
 If its in your interest, the following versions are installed on my Windows 10 machine:
 
