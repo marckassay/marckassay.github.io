@@ -107,7 +107,7 @@ a {
   text-decoration: none;
 
   &:visited {
-    color: darken($brand-color, 15%);
+    color: lighten($brand-color,15%);
   }
 
   &:hover {
@@ -151,8 +151,8 @@ code {
   @include relative-font-size(0.9375);
   font-family: 'Source Code Pro';
   border: 1px solid $grey-color-light;
-  border-radius: 3px;
-  background-color: #eef;
+  border-radius: 0px;
+  background-color: $code-background-color;
 }
 
 code {

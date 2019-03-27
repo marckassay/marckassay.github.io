@@ -6,13 +6,13 @@
   @extend %vertical-rhythm;
 
   .highlighter-rouge & {
-    background: #eef;
+    background: $code-background-color;
   }
 
   .c     { color: #998; font-style: italic } // Comment
-  .err   { color: #a61717; background-color: #e3d2d2 } // Error
-  .k     { font-weight: bold } // Keyword
-  .o     { font-weight: bold } // Operator
+  .err   { color: #a00 } // Error
+  .k     { color: $bold-code-color } // Keyword
+  .o     { color: $bold-code-color } // Operator
   .cm    { color: #998; font-style: italic } // Comment.Multiline
   .cp    { color: #999; font-weight: bold } // Comment.Preproc
   .c1    { color: #998; font-style: italic } // Comment.Single
@@ -26,13 +26,13 @@
   .gi .x { color: #000; background-color: #afa } // Generic.Inserted.Specific
   .go    { color: #888 } // Generic.Output
   .gp    { color: #555 } // Generic.Prompt
-  .gs    { font-weight: bold } // Generic.Strong
+  .gs    { color: $bold-code-color } // Generic.Strong
   .gu    { color: #aaa } // Generic.Subheading
   .gt    { color: #a00 } // Generic.Traceback
-  .kc    { font-weight: bold } // Keyword.Constant
-  .kd    { font-weight: bold } // Keyword.Declaration
-  .kp    { font-weight: bold } // Keyword.Pseudo
-  .kr    { font-weight: bold } // Keyword.Reserved
+  .kc    { color: $bold-code-color } // Keyword.Constant
+  .kd    { color: $bold-code-color } // Keyword.Declaration
+  .kp    { color: $bold-code-color } // Keyword.Pseudo
+  .kr    { color: $bold-code-color } // Keyword.Reserved
   .kt    { color: #458; font-weight: bold } // Keyword.Type
   .m     { color: #099 } // Literal.Number
   .s     { color: #d14 } // Literal.String
@@ -46,7 +46,7 @@
   .nn    { color: #555 } // Name.Namespace
   .nt    { color: #000080 } // Name.Tag
   .nv    { color: #008080 } // Name.Variable
-  .ow    { font-weight: bold } // Operator.Word
+  .ow    { color: $bold-code-color } // Operator.Word
   .w     { color: #bbb } // Text.Whitespace
   .mf    { color: #099 } // Literal.Number.Float
   .mh    { color: #099 } // Literal.Number.Hex
