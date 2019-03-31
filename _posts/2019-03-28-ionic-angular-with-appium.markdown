@@ -230,305 +230,312 @@ Sorry for not including code for iOS as I don't have an Apple to do a build from
 If it's in your interest, the following versions are installed on my Windows 10 machine:
 
 ```shell
+$
 >> node -v
 >> nvm v
 >> npm -v
->> ionic -v
+>> ionic --version
+>> cordova -v
 v11.0.0
 1.1.7
 6.9.0
-4.10.3
+4.12.0
+9.0.0
 ```
 
 ## Develop Our App To Be Tested
 
 The animated gif below is 'Ionic4 Angular With Appium' (which is named 'myApp' in package.json file) as 'app under test' (AUT). This hopefully will illustrate to you the basic layout of the app. As can seen from the diagnostic information on top, Android's 'Pointer location' is enabled in the 'Developer options' of this device:
 
- ![AUT Recording](/assets/2019-03-21/App_Recording.gif#indent)
+  ![AUT Recording](/assets/2019-03-21/App_Recording.gif#indent)
 
 You have the option to clone (or fork) ['Ionic4 Angular With Appium'](https://github.com/marckassay/Ionic4AngularWithAppium) app that we will be used in this tutorial. For those who choose to proceed in development of this app, continue to step 1. Otherwise with your 'Ionic4 Angular With Appium' cloned, skip to 'Start AUT Process' section of this tutorial.
 
 1. Execute your choice of Node package manager’s install command for `ionic` and `cordova` modules, if not already installed. For the sake of simplicity I will be using `npm` commands for this article. You may choose to use any other Node package manager, however with `cordova-fetch` it unconditionally uses `npm` which will conflict with `yarn` if used. For more information read about [spypkg's objective](https://github.com/marckassay/spypkg):
 
-   ```shell
-   $ /> npm install ionic cordova -g
-   ```
+    ```shell
+    $ /> npm install ionic cordova -g
+    ```
 
 2. By default, `ionic start` will add Angular dependencies and you may opt-out of appflow integration when prompt at the end of install. So execute the following to have ionic generate our app named 'myApp':
 
-   ```shell
-   $ /> ionic start myApp sidemenu
-   ```
+    ```shell
+    $ /> ionic start myApp sidemenu
+    ```
 
 3. Change your CLI directory to 'myApp' and you should be able to at least build and have it served locally by executing what is below. For those who immediately receive an error, see the message below this block of code:
 
-   ```shell
-   $ /> cd myApp/
-   $ /myApp> ionic serve
-   ```
-
-   *If you receive the following error message:*
-
-   ```shell
-   > ng serve
-   'sh' is not recognized as an internal or external command,
-   operable program or batch file.
-   [ERROR] ng has unexpectedly closed (exit code 1).
-   ```
-
-   *A workaround is to change the name of `ng` file:*
-
-   ```powershell
-   $ /myApp> Rename-Item .\node_modules\.bin\ng -NewName ng.tmp
-   ```
-
-   *Or simply delete that file. This* [issue](https://github.com/ionic-team/ionic-cli/issues/3852) *is currently open in ionic-cli project.*
+    ```shell
+    $ /> cd myApp/
+    $ /myApp> ionic serve
+    ```
 
 4. Generate a left and right sidemenu. This app will have a left and right sidemenu containing a list of items. I'm going to use some parts of the generated code from step 2 to quickly have us develop this app.
 
-   ```shell
-   $ /myApp> ionic generate page leftmenu
-   $ /myApp> ionic generate page rightmenu
-   ```
+    ```shell
+    $ /myApp> ionic generate page leftmenu
+    $ /myApp> ionic generate page rightmenu
+    ```
 
-5. Now modify the following file in `src/app/`:
+5. Now modify the following files in `src/app/`:
 
-   ```code
-   file: src/app/app.component.html
-   ```
+    ```code
+    file: src/app/app.component.html
+    ```
 
-   ```html
-   <ion-app>
-     <ion-menu side="start">
-         <app-leftmenu></app-leftmenu>
-     </ion-menu>
-     <ion-menu side="end">
-         <app-rightmenu></app-rightmenu>
-     </ion-menu>
-     <ion-router-outlet main></ion-router-outlet>
-   </ion-app>
-   ```
+    ```html
+    <ion-app>
+      <ion-menu side="start">
+          <app-leftmenu></app-leftmenu>
+      </ion-menu>
+      <ion-menu side="end">
+          <app-rightmenu></app-rightmenu>
+      </ion-menu>
+      <ion-router-outlet main></ion-router-outlet>
+    </ion-app>
+    ```
 
-   <br/>
+    <br/>
 
-   ```code
-   file: src/app/app.component.ts
-   ```
+    ```code
+    file: src/app/app.component.ts
+    ```
 
-   ```typescript
-   import { Component } from '@angular/core';
-   import { Router } from '@angular/router';
-   import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-   import { StatusBar } from '@ionic-native/status-bar/ngx';
-   import { Platform } from '@ionic/angular';
+    ```typescript
+    import { Component } from '@angular/core';
+    import { Router } from '@angular/router';
+    import { Platform } from '@ionic/angular';
 
+    @Component({
+      selector: 'app-root',
+      templateUrl: 'app.component.html'
+    })
+    export class AppComponent {
+    public appPages = [
+      {
+        title: 'Home',
+        url: '/home',
+        icon: 'home'
+      },
+      {
+        title: 'List',
+        url: '/list',
+        icon: 'list'
+      }
+    ];
 
-   @Component({
-     selector: 'app-root',
-     templateUrl: 'app.component.html'
-   })
-   export class AppComponent {
-     public appPages = [
-       {
-         title: 'Home',
-         url: '/home',
-         icon: 'home'
-       },
-       {
-         title: 'List',
-         url: '/list',
-         icon: 'list'
-       }
-     ];
+    constructor(
+      private platform: Platform,
+      private router: Router
+      ) {
+        this.initializeApp();
+      }
 
-     constructor(
-       private platform: Platform,
-       private splashScreen: SplashScreen,
-       private statusBar: StatusBar,
-       private router: Router
-     ) {
-       this.initializeApp();
-     }
+      async initializeApp() {
+      await this.platform.ready();
+      await this.router.navigate(['/home']);
+      }
+    }
+    ```
 
-     initializeApp() {
-       this.platform.ready().then(() => {
-         this.statusBar.styleDefault();
-         this.splashScreen.hide();
-         this.router.navigate(['/home']);
-       });
-     }
-   }
-   ```
+    <br/>
 
-   <br/>
+    ```code
+    file: src/app/app.module.ts
+    ```
 
-   ```code
-   file: src/app/app.module.ts
-   ```
+    ```typescript
+    import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+    import { BrowserModule } from '@angular/platform-browser';
+    import { RouteReuseStrategy } from '@angular/router';
+    import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+    import { StatusBar } from '@ionic-native/status-bar/ngx';
+    import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+    import { AppRoutingModule } from './app-routing.module';
+    import { AppComponent } from './app.component';
+    import { LeftmenuPageModule } from './leftmenu/leftmenu.module';
+    import { RightmenuPageModule } from './rightmenu/rightmenu.module';
 
-   ```typescript
-   import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-   import { BrowserModule } from '@angular/platform-browser';
-   import { RouteReuseStrategy } from '@angular/router';
-   import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-   import { StatusBar } from '@ionic-native/status-bar/ngx';
-   import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-   import { AppRoutingModule } from './app-routing.module';
-   import { AppComponent } from './app.component';
-   import { LeftmenuPageModule } from './leftmenu/leftmenu.module';
-   import { RightmenuPageModule } from './rightmenu/rightmenu.module';
-
-   @NgModule({
-     declarations: [AppComponent],
-     entryComponents: [],
-     imports: [
-       LeftmenuPageModule,
-       RightmenuPageModule,
-       BrowserModule,
-       IonicModule.forRoot(
-         {
-           menuType: 'reveal'
-         }),
-       AppRoutingModule
-     ],
-     providers: [
-       StatusBar,
-       SplashScreen,
-       { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
-     ],
-     bootstrap: [AppComponent],
-     schemas: [CUSTOM_ELEMENTS_SCHEMA]
-   })
-   export class AppModule { }
-   ```
+    @NgModule({
+      declarations: [AppComponent],
+      entryComponents: [],
+      imports: [
+        LeftmenuPageModule,
+        RightmenuPageModule,
+        BrowserModule,
+        IonicModule.forRoot(
+          {
+            menuType: 'reveal'
+          }),
+        AppRoutingModule
+      ],
+      providers: [
+        StatusBar,
+        SplashScreen,
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+      ],
+      bootstrap: [AppComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    })
+    export class AppModule { }
+    ```
 
 6. Now for `LeftmenuPage` and `RightmenuPage`, modify their `@NgModule` tag that is located in their module file so that they can be imported:
 
-   ```code
-   file: src/app/leftmenu/leftmenu.module.ts
-   ```
+    ```code
+    file: src/app/leftmenu/leftmenu.module.ts
+    ```
 
-   ```typescript
-   @NgModule({
-     imports: [
-       CommonModule,
-       FormsModule,
-       IonicModule,
-       RouterModule.forChild(routes)
-     ],
-     declarations: [LeftmenuPage],
-     exports: [LeftmenuPage]
-   })
-   ```
+    ```typescript
+    @NgModule({
+      imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        RouterModule.forChild(routes)
+      ],
+      declarations: [LeftmenuPage],
+      exports: [LeftmenuPage]
+    })
+    ```
 
-   <br/>
+    <br/>
 
-   ```code
-   file: src/app/rightmenu/rightmenu.module.ts
-   ```
+    ```code
+    file: src/app/rightmenu/rightmenu.module.ts
+    ```
 
-   ```typescript
-   @NgModule({
-     imports: [
-       CommonModule,
-       FormsModule,
-       IonicModule,
-       RouterModule.forChild(routes)
-     ],
-     declarations: [RightmenuPage],
-     exports: [RightmenuPage]
-   })
-   ```
+    ```typescript
+    @NgModule({
+      imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        RouterModule.forChild(routes)
+      ],
+      declarations: [RightmenuPage],
+      exports: [RightmenuPage]
+    })
+    ```
 
-   And replace all content between the curly braces of `LeftmenuPage` and `RightmenuPage` class with the following TypeScript code below.
+    And replace all content between the curly braces of `LeftmenuPage` and `RightmenuPage` class with the following TypeScript code below.
 
-   ```code
-   file: src/app/leftmenu/leftmenu.page.ts
-   file: src/app/rightmenu/rightmenu.page.ts
-   ```
+    ```code
+    file: src/app/leftmenu/leftmenu.page.ts
+    file: src/app/rightmenu/rightmenu.page.ts
+    ```
 
-   ```typescript
-   private selectedItem: any;
-   private icons = [
-     'flask',
-     'wifi',
-     'beer',
-     'football',
-     'basketball',
-     'paper-plane',
-     'american-football',
-     'boat',
-     'bluetooth',
-     'build'
-   ];
-   public items: Array<{ title: string; note: string; icon: string }> = [];
-   constructor() {
-     for (let i = 1; i < 11; i++) {
-       this.items.push({
-         title: 'Item ' + i,
-         note: 'This is item #' + i,
-         icon: this.icons[ i - 1 ]
-       });
-     }
-   }
+    ```typescript
+    private selectedItem: any;
+    private icons = [
+      'flask',
+      'wifi',
+      'beer',
+      'football',
+      'basketball',
+      'paper-plane',
+      'american-football',
+      'boat',
+      'bluetooth',
+      'build'
+    ];
 
-   ngOnInit() {
-   }
-   ```
+    public items: Array<{ title: string; note: string; icon: string }> = [];
+
+    constructor() {
+      for (let i = 1; i < 11; i++) {
+        this.items.push({
+          title: 'Item ' + i,
+          note: 'This is item #' + i,
+          icon: this.icons[ i - 1 ]
+        });
+      }
+    }
+
+    ngOnInit() {
+    }
+    ```
 
 7. In an addition for `LeftmenuPage` and `RightmenuPage` modules, modify their html and scss file:
 
-   Replace the `ion-content` tag with the following for:
+    Replace the `ion-content` tag with the following for:
 
-   ```code
-   file: src/app/leftmenu/leftmenu.page.html
-   file: src/app/rightmenu/rightmenu.page.html
-   ```
+    ```code
+    file: src/app/leftmenu/leftmenu.page.html
+    file: src/app/rightmenu/rightmenu.page.html
+    ```
 
-   ```html
-   <ion-content>
-     <ion-list>
-       <ion-item *ngFor="let item of items">
-         <ion-icon [name]="item.icon" slot="start"></ion-icon>
-         {{item.title}}
-         <div class="item-note" slot="end">
-           {{item.note}}
-         </div>
-       </ion-item>
-     </ion-list>
-   </ion-content>
-   ```
+    ```html
+    <ion-content>
+      <ion-list>
+        <ion-item *ngFor="let item of items">
+          <ion-icon [name]="item.icon" slot="start"></ion-icon>
+          {{item.title}}
+          <div class="item-note" slot="end">
+            {{item.note}}
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+    ```
 
-   Add the following scss code to files these files:
+    Add the following scss code to files these files:
 
-   ```code
-   file: src/app/leftmenu/leftmenu.page.scss
-   file: src/app/rightmenu/rightmenu.page.scss
-   ```
+    ```code
+    file: src/app/leftmenu/leftmenu.page.scss
+    file: src/app/rightmenu/rightmenu.page.scss
+    ```
 
-   ```css
-   :host {
-   display: contents;
-   }
-   ```
+    ```css
+    :host {
+    display: contents;
+    }
+    ```
 
-8. Now that we are done with development. We need to add WebdriverIO dependencies. Execute the following to do just that.
+8. Edit `HomePage` to hide splash screen when it's been navigated to.
 
-   ```shell
-   $ /myApp> npm install webdriverio @wdio/cli @wdio/jasmine-framework @wdio/local-runner @wdio/spec-reporter @wdio/sync -D
-   ```
+    ```code
+    file: src/app/home/home.page.ts
+    ```
 
-   If npm WARN ajv-keywords@3.4.0 requires a peer of ajv@^6.9.1 but none is installed. You must install peer dependencies yourself.
+    ```typescript
+    import { Component } from '@angular/core';
+    import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+    import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-   ```shell
-   $ /myApp> npm install ajv -D
-   ```
+    @Component({
+      selector: 'app-home',
+      templateUrl: 'home.page.html',
+      styleUrls: ['home.page.scss'],
+    })
+    export class HomePage {
+      constructor(private splashScreen: SplashScreen,
+        private statusBar: StatusBar) { }
 
-9. Next, is to create the e2e tests. First restructure the e2e folder where Angular currently has it's karam tests. To separate Angular's karma e2e tests and our WDIO test, move all current contents of `e2e` folder into a new folder named `karma`. Create another folder in `e2e` named `appium`. So the `e2e` folder is now structured as illustrated:
+      ionViewDidEnter() {
+        this.statusBar.styleDefault();
+        this.splashScreen.hide();
+      }
+    }
+    ```
 
-   ![New e2e Structure](/assets/2019-03-21/New_e2e_Structure.png#indent)
+9. Now that we are done with development. We need to add WebdriverIO dependencies. Execute the following to do just that.
 
-10. Now we can add Appium and WDIO files. To do this simply [download the archive file](https://github.com/marckassay/Ionic4AngularWithAppium/raw/master/E2ECode.zip) that is the TypeScript port of [Wim Selles](https://github.com/wswebcreation)' JavaScript code from his [appium-boilerplate](https://github.com/webdriverio/appium-boilerplate) project. Also in this archive are typings I created. Once downloaded, extract contents to the project root `myApp` folder. So the `e2e/appium` folder is now structured as illustrated followed by typings folder:
+    ```shell
+    $ /myApp> npm install webdriverio @wdio/cli @wdio/jasmine-framework @wdio/local-runner @wdio/spec-reporter @wdio/sync -D
+    ```
+
+    If npm WARN ajv-keywords@3.4.0 requires a peer of ajv@^6.9.1 but none is installed. You must install peer dependencies yourself.
+
+    ```shell
+    $ /myApp> npm install ajv -D
+    ```
+
+10. Next, is to create the e2e tests. First restructure the e2e folder where Angular currently has it's karam tests. To separate Angular's karma e2e tests and our WDIO test, move all current contents of `e2e` folder into a new folder named `karma`. Create another folder in `e2e` named `appium`. So the `e2e` folder is now structured as illustrated:
+
+    ![New e2e Structure](/assets/2019-03-21/New_e2e_Structure.png#indent)
+
+11. Now we can add Appium and WDIO files. To do this simply [download the archive file](https://github.com/marckassay/Ionic4AngularWithAppium/raw/master/E2ECode.zip) that is the TypeScript port of [Wim Selles](https://github.com/wswebcreation)' JavaScript code from his [appium-boilerplate](https://github.com/webdriverio/appium-boilerplate) project. Also in this archive are typings I created. Once downloaded, extract contents to the project root `myApp` folder. So the `e2e/appium` folder is now structured as illustrated followed by typings folder:
 
     ![New e2e/appium Structure with Content](/assets/2019-03-21/New_e2e_Structure_With_Content.png#indent)
 
@@ -536,7 +543,11 @@ You have the option to clone (or fork) ['Ionic4 Angular With Appium'](https://gi
 
     I'll explain in the 'About the E2E Code' section of this tutorial about this code.
 
-11. Edit `package.json` file to include `wdio:test` script command:
+12. Edit `package.json` file to include `wdio:test` script command. And edit `config.xml` to have the SplashScreen behave to our advantage:
+
+    ```code
+    file: package.json
+    ```
 
     ```json
     {
@@ -556,9 +567,28 @@ You have the option to clone (or fork) ['Ionic4 Angular With Appium'](https://gi
       },
     ```
 
+    <br/>
+
+    ```code
+    file: config.xml
+    ```
+
+    ```xml
+    ...
+    <preference name="ScrollEnabled" value="false" />
+    <preference name="android-minSdkVersion" value="19" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="AutoHideSplashScreen" value="false" />
+        <platform name="android">
+        <allow-intent href="market:*" />
+        ...
+    ```
+
     Now this app's source and e2e code is completed.
 
-12. This will integrate and build the app that will output the APK file:
+13. This will integrate and build the app that will output the APK file:
 
     ```shell
     $ /myApp> ionic cordova build android
@@ -612,27 +642,27 @@ These TypeScript typings are used for `wdio.conf.ts` file. The `appium-typings.d
 
 3. Run Appium as admin.
 
-   ![Run Appium as Admin](/assets/2019-03-21/Run_Appium_As_Admin.png#indent)
+    ![Run Appium as Admin](/assets/2019-03-21/Run_Appium_As_Admin.png#indent)
 
 4. Now start Appium.
 
-   ![Start Appium](/assets/2019-03-21/Start_Appium.png#indent)
+    ![Start Appium](/assets/2019-03-21/Start_Appium.png#indent)
 
-   ![Appium Running](/assets/2019-03-21/Appium_Running.png#indent)
+    ![Appium Running](/assets/2019-03-21/Appium_Running.png#indent)
 
-   More information on Appium Desktop can be found [here](https://github.com/appium/appium-desktop).
+    More information on Appium Desktop can be found [here](https://github.com/appium/appium-desktop).
 
 5. Finally, we are ready to run our test suite and have Appium "drive" our WebdriverIO tests. Execute the `wdio:test` script command:
 
-   ```shell
-   $ /myApp> npm run wdio:test
-   ```
+    ```shell
+    $ /myApp> npm run wdio:test
+    ```
 
-   Appium Settings app should of auto-installed and continue to run in the background. Hopefully after WDIO and Appium are finished, your CLI and Appium console should be similar to what is illustrated below:
+    Appium Settings app should of auto-installed and continue to run in the background. Hopefully after WDIO and Appium are finished, your CLI and Appium console should be similar to what is illustrated below:
 
     ![Post WDIO Test](/assets/2019-03-21/Post_WDIO_Test.png#indent)
 
-   This concludes the tutorial for this article.
+    This concludes the tutorial for this article.
 
 ## Conclusion
 
