@@ -37,9 +37,9 @@ others:
   - entry:
       title: regex101 - npm expression parser
       url: "https://regex101.com/library/IwsYRm"
-#  - entry:
-#      title: regex101 - test expression
-#      url: "https://regex101.com/"
+  - entry:
+      title: regex101 - Mailing Address (US Postal)
+      url: "https://regex101.com/library/BWvpcz/"
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
