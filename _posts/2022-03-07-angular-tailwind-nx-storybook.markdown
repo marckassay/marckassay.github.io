@@ -9,7 +9,7 @@ This post is a brief continuation of '[Set up Tailwind CSS with Angular in an Nx
 
 - [https://github.com/marckassay/angular-tailwind-storybook-nx](https://github.com/marckassay/angular-tailwind-storybook-nx)
 
-The objective for this blog post is to demonstrate integrating Storybook in 'app1' and 'lib1' of this workspace. This image shows the results of installing and configuring Storybook for 'app1':
+The objective for this blog post is to demonstrate integrating Storybook in 'app1' and 'lib1' of this workspace. And also, to demonstrate how to set Angular's template binding and `ng-content` in a story. This image shows the results of installing and configuring Storybook for 'app1':
 
 ![updated app1 serving storybook](/assets/2022-03-07/app1.stories-storybook.png)
 
@@ -88,7 +88,7 @@ Modify `header.component.html` by moving current css into it component css file:
 
 <script src="https://gist.github.com/marckassay/5884dfa6014e74088d7bb5a43d9288e2.js"></script>
 
-Also, you may have noticed a new property `strong` for this component. This is another modest change to make this component's story have a little more practical.
+Also, you may have noticed a new property `strong` for this component. This is another modest change to make this component's story have a little more meaning.
 
 For the sake of creating 2 Gists for this component's css and ts file changes, below are both:
 
@@ -100,7 +100,7 @@ Now for the its story:
 
 <script src="https://gist.github.com/marckassay/dd2e01fc61d158a9dfd3b165cc8ac84c.js"></script>
 
-In the previous section, 'Configure 'app1' for Storybook', we changed the `title` property of this component to be a value for its `ng-content`. That was intentional to demonstrate how to set an Angular _content_ value in a story. And for simplicity, perhaps not an ideal location, I added a `Content` interface that is [_intersected_](https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types) with `Header` to form a new type, `HeaderContent`. We use this type to be passed into the `Template`, which adds `HeaderComponent` to the DOM, and sets its input value `strong`. And it also shows a way of setting an Angular component's `ng-content` value.
+In the previous section, 'Configure 'app1' for Storybook', we changed the `title` property of this component to be a value for its `ng-content`. That was intentional to demonstrate how to set an Angular component's _content_ value in a story. And for simplicity, perhaps not an ideal location, I added a `Content` interface that is [_intersected_](https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types) with `Header` to form a new type, `HeaderContent`. We use this type to be passed into the `Template`, which adds `HeaderComponent` to the DOM, and sets its input value `strong`.
 
 To serve 'lib1':
 
@@ -118,4 +118,4 @@ To view this section's commit: [0075f1ad](https://github.com/marckassay/angular-
 
 ## Conclusion
 
-Hopefully, this post demystifies some uncertainties you might have had with integrating Storybook into Leosvel Espinosa's workspace from his blog [post](https://medium.com/nrwl/set-up-tailwind-css-with-angular-in-an-nx-workspace-6f039a0f4479). I believe this stack of techs: Angular, Tailwind, Nx, and Storybook, together can be advantageous to the development and longevity of an application(s).
+Hopefully, this post demystifies some uncertainties you might have had with integrating Storybook into Leosvel Espinosa's workspace from his blog [post](https://medium.com/nrwl/set-up-tailwind-css-with-angular-in-an-nx-workspace-6f039a0f4479) or any other Nx Angular workspace. I believe this stack of techs: Angular, Tailwind, Nx, and Storybook, together can be advantageous to the development and longevity of an application(s).
