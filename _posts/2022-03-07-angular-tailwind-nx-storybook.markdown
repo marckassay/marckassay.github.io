@@ -5,11 +5,11 @@ date:   2022-03-07 17:07:01 -0400
 categories: workspace node
 ---
 
-This post is a brief continuation of '[Set up Tailwind CSS with Angular in an Nx workspace](https://medium.com/nrwl/set-up-tailwind-css-with-angular-in-an-nx-workspace-6f039a0f4479)' by [Leosvel Pérez Espinosa](https://medium.com/@leosvel). The following repository forked from the blog post just mentioned, contains all what is mentioned below:
+This post is a brief continuation of '[Set up Tailwind CSS with Angular in an Nx workspace](https://medium.com/nrwl/set-up-tailwind-css-with-angular-in-an-nx-workspace-6f039a0f4479)' by [Leosvel Pérez Espinosa](https://medium.com/@leosvel). The following repository forked from the blog post just mentioned contains all that is mentioned below:
 
 - [https://github.com/marckassay/angular-tailwind-storybook-nx](https://github.com/marckassay/angular-tailwind-storybook-nx)
 
-Objective for this blog post is to demonstrate integrating Storybook in 'app1' and 'lib1' of this workspace. This image shows the results of installing and configuring Storybook for 'app1':
+The objective for this blog post is to demonstrate integrating Storybook in 'app1' and 'lib1' of this workspace. This image shows the results of installing and configuring Storybook for 'app1':
 
 ![updated app1 serving storybook](/assets/2022-03-07/app1.stories-storybook.png)
 
@@ -29,7 +29,7 @@ And for Window users, convert `rm` command to node's equivalent:
 
 ## Configure 'app1' for Storybook
 
-Regardless of package manager you're using, generate Storybook files and modification using `npx`:
+Regardless of package manager you're using, generate Storybook files and modifications using `npx`:
 
 ```shell
 npx nx g @nrwl/angular:storybook-configuration app1
@@ -61,7 +61,7 @@ And also, modify the generated story for 'app1':
 
 And finally, make appropriate changes in `app.module.ts` file; remove 'NxWelcomeComponent'.
 
-With these changes, it makes app1's story more practical, although modest. The changes should now be able to yield what is seen in the image above by executing:
+These changes, make app1's story more practical, although modest. The changes should now be able to yield what is seen in the image above by executing:
 
 ```
 npx nx storybook app1
@@ -82,34 +82,40 @@ If there is part of this post that may be debatable, it will likely be in the ch
 
 <script src="https://gist.github.com/marckassay/501d427426af1b820b4d06e6104f1435.js"></script>
 
-For `storybook` command of this library, notice line 8 and 13. This library is using app1's configuration for Tailwind and Storybook. At this moment, I'm content with this configuration, although you may desire an alternative. The same change to `storybook` command is applied to the `build-storybook` command of that same file.
+For `storybook` command of this library, notice lines 8 and 13. This library is using app1's configuration for Tailwind and Storybook. At this moment, I'm content with this configuration, although you may desire an alternative. The same change to `storybook` command is applied to the `build-storybook` command of that same file.
 
 Modify `header.component.html` by moving current css into it component css file:
 
 <script src="https://gist.github.com/marckassay/5884dfa6014e74088d7bb5a43d9288e2.js"></script>
 
-Also you may have noticed a new property `strong` for this component. This is another modest change to make this component's story have a little more practical.
+Also, you may have noticed a new property `strong` for this component. This is another modest change to make this component's story have a little more practical.
 
 For the sake of creating 2 Gists for this component's css and ts file changes, below are both:
 
 <script src="https://gist.github.com/marckassay/8e5081a82e6c85b11c8bfa90db208326.js"></script>
 
-The `strong` property is added to a new interface, `Header`, that will be used enforce data type in its story.
+The `strong` property is added to a new interface, `Header`, that will be used to enforce data type in its story.
 
 Now for the its story:
 
 <script src="https://gist.github.com/marckassay/dd2e01fc61d158a9dfd3b165cc8ac84c.js"></script>
 
-In the previous section, 'Configure 'app1' for Storybook', we changed the `title` property of this component to be a value for its `ng-content`. That was intentional to demonstrate how to set an Angular _content_ value in a story. And for simplicity, perhaps not ideal location, I added a `Content` interface that is [_intersected_](https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types) with `Header` to form a new type, `HeaderContent`. We use this type to be passed into the `Template`, that adds `HeaderComponent` to the DOM, and sets its input value `strong`. And it also shows a way of setting an Angular component's `ng-content` value.
+In the previous section, 'Configure 'app1' for Storybook', we changed the `title` property of this component to be a value for its `ng-content`. That was intentional to demonstrate how to set an Angular _content_ value in a story. And for simplicity, perhaps not an ideal location, I added a `Content` interface that is [_intersected_](https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types) with `Header` to form a new type, `HeaderContent`. We use this type to be passed into the `Template`, which adds `HeaderComponent` to the DOM, and sets its input value `strong`. And it also shows a way of setting an Angular component's `ng-content` value.
+
+To serve 'lib1':
+
+```
+npx nx storybook lib1
+```
 
 This image shows the results of this section:
 
-![updated app1 serving storybook](/assets/2022-03-07/lib1.stories-storybook.png)
+![updated lib1 serving storybook](/assets/2022-03-07/lib1.stories-storybook.png)
 
-Notice the absent of cards, as this story is for 'lib1' and `CardComponent` is in 'lib2'. This is a start to [Component Driven](https://www.componentdriven.org/) development.
+Notice the absence of cards, as this story is for 'lib1' and `CardComponent` is in 'lib2'. This is a start to [Component Driven](https://www.componentdriven.org/) development.
 
 To view this section's commit: [0075f1ad](https://github.com/marckassay/angular-tailwind-storybook-nx/commit/0075f1ad9ee0dda27be27b857db4e27f444b0678).
 
 ## Conclusion
 
-Hopefully this post demystifies some uncertainties you might of had with integrating Storybook into Leosvel Espinosa's workspace from his blog [post](https://medium.com/nrwl/set-up-tailwind-css-with-angular-in-an-nx-workspace-6f039a0f4479). I believe this stack of techs: Angular, Tailwind, Nx and Storybook, together can be advantageous to development and longevity of an application(s).
+Hopefully, this post demystifies some uncertainties you might have had with integrating Storybook into Leosvel Espinosa's workspace from his blog [post](https://medium.com/nrwl/set-up-tailwind-css-with-angular-in-an-nx-workspace-6f039a0f4479). I believe this stack of techs: Angular, Tailwind, Nx, and Storybook, together can be advantageous to the development and longevity of an application(s).
