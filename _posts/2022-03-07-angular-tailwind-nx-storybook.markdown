@@ -11,7 +11,9 @@ This post is a brief continuation of '[Set up Tailwind CSS with Angular in an Nx
 
 The objective for this blog post is to demonstrate integrating Storybook in 'app1' and 'lib1' of this workspace. And also, to demonstrate how to set Angular's template binding and `ng-content` in a story. This image shows the results of installing and configuring Storybook for 'app1':
 
-![updated app1 serving storybook](/assets/2022-03-07/app1.stories-storybook.png)
+<div style="display: flex;justify-content: center; padding: 2em;">
+  <a href="/assets/2022-03-07/app1.stories-storybook.png"><img title="updated app1 serving storybook" style="box-shadow: 3px 3px 5px rgba(0, 0, 0, .7);" src="/assets/2022-03-07/app1.stories-storybook.png" /></a>
+</div>
 
 ## Prep work needed
 
@@ -110,7 +112,9 @@ npx nx storybook lib1
 
 This image shows the results of this section:
 
-![updated lib1 serving storybook](/assets/2022-03-07/lib1.stories-storybook.png)
+<div style="display: flex;justify-content: center; padding: 2em;">
+  <a href="/assets/2022-03-07/lib1.stories-storybook.png"><img title="updated lib1 serving storybook" style="box-shadow: 3px 3px 5px rgba(0, 0, 0, .7);" src="/assets/2022-03-07/lib1.stories-storybook.png" /></a>
+</div>
 
 Notice the absence of cards, as this story is for 'lib1' and `CardComponent` is in 'lib2'. This is a start to [Component Driven](https://www.componentdriven.org/) development.
 
