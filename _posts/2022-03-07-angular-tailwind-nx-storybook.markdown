@@ -15,20 +15,6 @@ The objective for this blog post is to demonstrate integrating Storybook in 'app
   <a href="/assets/2022-03-07/app1.stories-storybook.png"><img title="updated app1 serving storybook" style="box-shadow: 3px 3px 5px rgba(0, 0, 0, .7);" src="/assets/2022-03-07/app1.stories-storybook.png" /></a>
 </div>
 
-## Prep work needed
-
-During the time of this post, I choose to update Nx using its [`migrate`](https://nx.dev/cli/migrate) command:
-
-```shell
-yarn nx migrate @nrwl/workspace@latest
-```
-
-As a result, this command generated a `migrations.json` file in the workspace root directory.
-
-And for Window users, convert `rm` command to node's equivalent:
-
-<script src="https://gist.github.com/marckassay/2fa5b3e331be92988cf6a562302e482c.js"></script>
-
 ## Configure 'app1' for Storybook
 
 Regardless of package manager you're using, generate Storybook files and modifications using `npx`:
@@ -37,7 +23,7 @@ Regardless of package manager you're using, generate Storybook files and modific
 npx nx g @nrwl/angular:storybook-configuration app1
 ```
 
-Opting out of Cypress test file in the command prompt, this should yield something similar to commit [`3b531de`](https://github.com/marckassay/angular-tailwind-storybook-nx/commit/3b531dec45db341876a291f076077cac7e6f5585). With that SHA, execute `git show 3b531de --name-status` will output the status of it:
+Opting out of both options in the command prompt to include Cypress tests, this should yield something similar to commit [3b531ded](https://github.com/marckassay/angular-tailwind-storybook-nx/commit/3b531dec45db341876a291f076077cac7e6f5585). With that SHA, execute `git show 3b531de --name-status` to see what changed:
 
 <script src="https://gist.github.com/marckassay/cc91669e97a0b74221c294abaab6c068.js"></script>
 
@@ -53,7 +39,7 @@ And also modify app1's component file:
 
 <script src="https://gist.github.com/marckassay/57cca477d150c38331485888b594a0cf.js"></script>
 
-From the perspective of 'app1', the typography that is rendered for `angular-tailwind-nx-header`, can be considered a `title`. And from the perspective of 'lib1', this wording can be seen as content. Change 'lib1' to support this change:
+From the perspective of 'app1', the typography that is rendered for `angular-tailwind-nx-header` component, can be considered a `title`. And from the perspective of 'lib1', this wording can be seen as content. Change 'lib1' to support this change:
 
 <script src="https://gist.github.com/marckassay/7b575d18f97a447413c5a56164850c5a.js"></script>
 
@@ -102,7 +88,7 @@ Now for the its story:
 
 <script src="https://gist.github.com/marckassay/dd2e01fc61d158a9dfd3b165cc8ac84c.js"></script>
 
-In the previous section, 'Configure 'app1' for Storybook', we changed the `title` property of this component to be a value for its `ng-content`. That was intentional to demonstrate how to set an Angular component's _content_ value in a story. And for simplicity, perhaps not an ideal location, I added a `Content` interface that is [_intersected_](https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types) with `Header` to form a new type, `HeaderContent`. We use this type to be passed into the `Template`, which adds `HeaderComponent` to the DOM, and sets its input value `strong`.
+In the previous section, _'Configure 'app1' for Storybook'_, we changed the `title` property of this component to be a value for its `ng-content`. That was intentional to demonstrate how to set an Angular component's _content_ value in a story. And for simplicity, perhaps not an ideal location, I added a `Content` interface that is [_intersected_](https://www.typescriptlang.org/docs/handbook/2/objects.html#intersection-types) with `Header` to form a new type, `HeaderContent`. We use this type to be passed into the `Template`, which adds `HeaderComponent` to the DOM, and sets its input value `strong`.
 
 To serve 'lib1':
 
@@ -116,10 +102,10 @@ This image shows the results of this section:
   <a href="/assets/2022-03-07/lib1.stories-storybook.png"><img title="updated lib1 serving storybook" style="box-shadow: 3px 3px 5px rgba(0, 0, 0, .7);" src="/assets/2022-03-07/lib1.stories-storybook.png" /></a>
 </div>
 
-Notice the absence of cards, as this story is for 'lib1' and `CardComponent` is in 'lib2'. This is a start to [Component Driven](https://www.componentdriven.org/) development.
+Notice the absence of cards which we saw in the image above as this story is just for 'lib1', and `CardComponent` is in 'lib2'. This fashion of development, isolating component's to its own environment for testing, is the essence of [Component Driven](https://www.componentdriven.org/) development.
 
 To view this section's commit: [0075f1ad](https://github.com/marckassay/angular-tailwind-storybook-nx/commit/0075f1ad9ee0dda27be27b857db4e27f444b0678).
 
 ## Conclusion
 
-Hopefully, this post demystifies some uncertainties you might have had with integrating Storybook into Leosvel Espinosa's workspace from his blog [post](https://medium.com/nrwl/set-up-tailwind-css-with-angular-in-an-nx-workspace-6f039a0f4479) or any other Nx Angular workspace. I believe this stack of techs: Angular, Tailwind, Nx, and Storybook, together can be advantageous to the development and longevity of an application(s).
+Hopefully, this post demystifies some uncertainties you might have had with integrating Storybook into Leosvel Espinosa's workspace, or any other Nx Angular workspace, from his blog [post](https://medium.com/nrwl/set-up-tailwind-css-with-angular-in-an-nx-workspace-6f039a0f4479). I believe this stack of techs: Angular, Tailwind, Nx, and Storybook, together can be advantageous to the development and longevity of an application(s).
