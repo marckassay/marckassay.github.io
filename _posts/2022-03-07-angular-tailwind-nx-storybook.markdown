@@ -9,7 +9,7 @@ This post is a brief continuation of '[Set up Tailwind CSS with Angular in an Nx
 
 - [https://github.com/marckassay/angular-tailwind-storybook-nx](https://github.com/marckassay/angular-tailwind-storybook-nx)
 
-The objective for this blog post is to demonstrate integrating Storybook in 'app1' and 'lib1' of this workspace. And also, to demonstrate how to set Angular's template binding and `ng-content` in a story. This image shows the results of installing and configuring Storybook for 'app1':
+The objective of this blog post is to demonstrate integrating Storybook in 'app1' and 'lib1' of this workspace. And also, to demonstrate how to set Angular's template binding and `ng-content` in a story. This image shows the results of installing and configuring Storybook for 'app1':
 
 <div style="display: flex;justify-content: center; padding: 2em;">
   <a href="/assets/2022-03-07/app1.stories-storybook.png"><img title="updated app1 serving storybook" style="box-shadow: 3px 3px 5px rgba(0, 0, 0, .7);" src="/assets/2022-03-07/app1.stories-storybook.png" /></a>
@@ -17,13 +17,13 @@ The objective for this blog post is to demonstrate integrating Storybook in 'app
 
 ## Configure 'app1' for Storybook
 
-Regardless of package manager you're using, generate Storybook files and modifications using `npx`:
+Regardless of the package manager you're using, generate Storybook files and modifications using `npx`:
 
 ```shell
 npx nx g @nrwl/angular:storybook-configuration app1
 ```
 
-Opting out of both options in the command prompt to include Cypress tests, this should yield something similar to commit [3b531ded](https://github.com/marckassay/angular-tailwind-storybook-nx/commit/3b531dec45db341876a291f076077cac7e6f5585). With that SHA, execute `git show 3b531de --name-status` to see what changed:
+Opting out of both options in the command prompt to include Cypress tests, should yield something similar to commit [3b531ded](https://github.com/marckassay/angular-tailwind-storybook-nx/commit/3b531dec45db341876a291f076077cac7e6f5585). With that SHA, execute `git show 3b531de --name-status` to see what changed:
 
 <script src="https://gist.github.com/marckassay/cc91669e97a0b74221c294abaab6c068.js"></script>
 
@@ -102,7 +102,7 @@ This image shows the results of this section:
   <a href="/assets/2022-03-07/lib1.stories-storybook.png"><img title="updated lib1 serving storybook" style="box-shadow: 3px 3px 5px rgba(0, 0, 0, .7);" src="/assets/2022-03-07/lib1.stories-storybook.png" /></a>
 </div>
 
-Notice the absence of cards which we saw in the image above as this story is just for 'lib1', and `CardComponent` is in 'lib2'. This fashion of development, isolating component's to its own environment for testing, is the essence of [Component Driven](https://www.componentdriven.org/) development.
+Notice the absence of cards which we saw in the image above as this story is just for 'lib1', and `CardComponent` is in 'lib2'. This fashion of development, isolating components to their own environment for testing, is the essence of [Component Driven](https://www.componentdriven.org/) development.
 
 To view this section's commit: [0075f1ad](https://github.com/marckassay/angular-tailwind-storybook-nx/commit/0075f1ad9ee0dda27be27b857db4e27f444b0678).
 
