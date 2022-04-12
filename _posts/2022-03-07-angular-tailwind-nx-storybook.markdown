@@ -66,11 +66,11 @@ Similarly with generating Storybook for 'app1', do the following for 'lib1':
 npx nx g @nrwl/angular:storybook-configuration lib1
 ```
 
-If there is part of this post that may be debatable, it will likely be in the changes of lib1's `project.json` file. Here is what changed:
+Changes are needed for lib1's `project.json` file. Here is what changed:
 
 <script src="https://gist.github.com/marckassay/501d427426af1b820b4d06e6104f1435.js"></script>
 
-For `storybook` command of this library, notice lines 8 and 13. This library is using app1's configuration for Tailwind and Storybook. At this moment, I'm content with this configuration, although you may desire an alternative. The same change to `storybook` command is applied to the `build-storybook` command of that same file.
+For `storybook` command of this library, notice lines 8 and 13. This library is using lib3's configuration for Tailwind and Storybook. At this moment, I'm content with this configuration, although you may desire an alternative. The same change to `storybook` command is applied to the `build-storybook` command of that same file.
 
 Modify `header.component.html` by moving current css into it component css file:
 
