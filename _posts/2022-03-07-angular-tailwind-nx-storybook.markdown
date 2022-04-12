@@ -104,8 +104,8 @@ This image shows the results of this section:
 
 Notice the absence of cards which we saw in the image above as this story is just for 'lib1', and `CardComponent` is in 'lib2'. This fashion of development, isolating components to their own environment for testing, is the essence of [Component Driven](https://www.componentdriven.org/) development.
 
-To view this section's commit: [0075f1ad](https://github.com/marckassay/angular-tailwind-storybook-nx/commit/0075f1ad9ee0dda27be27b857db4e27f444b0678).
+To view this section's commit: [0075f1ad](https://github.com/marckassay/angular-tailwind-storybook-nx/commit/0075f1ad9ee0dda27be27b857db4e27f444b0678) followed by this update commit [874c75a](https://github.com/marckassay/angular-tailwind-storybook-nx/commit/874c75a3e25be971895a16a0146ac6ee125efacc).
 
 ## Conclusion
 
-Hopefully, this post demystifies some uncertainties you might have had with integrating Storybook into Leosvel Espinosa's workspace, or any other Nx Angular workspace, from his blog [post](https://medium.com/nrwl/set-up-tailwind-css-with-angular-in-an-nx-workspace-6f039a0f4479). I believe this stack of techs: Angular, Tailwind, Nx, and Storybook, together can be advantageous to the development and longevity of an application(s).
+Hopefully, this post demystifies some uncertainties you might have had with integrating Storybook into Leosvel Espinosa's workspace, or any other Nx Angular workspace, from his blog [post](https://medium.com/nrwl/set-up-tailwind-css-with-angular-in-an-nx-workspace-6f039a0f4479). Although Storybook was added to just 'app1' and 'lib1', what was mentioned here can also be applied to the remaining libraries. I believe this stack of techs: Angular, Tailwind, Nx, and Storybook, together can be advantageous to the development and longevity of applications.
