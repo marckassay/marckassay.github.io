@@ -17,6 +17,7 @@ header_pages:
 title: marckassay.github.io
 author: Marc Kassay
 email: marckassay@gmail.com
+gist: gist.github.com
 description: >- # this means to ignore newlines until "baseurl:"
   ~ a publication of my tribulations and realizations
 baseurl: "" # the subpath of your site, e.g. /blog
